@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "tales-essentials",
+  "version": "${version}",
+  "name": "Tales Essentials",
+  "description": "",
+  "authors": [
+    "Nokorbis"
+  ],
+  "contact": {
+    "repo": "https://github.com/BenderTales/tales-essentials"
+  },
+  "license": "MIT",
+  "icon": "assets/tales-essentials/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "fr.bendertales.mc.talesessentials.TalesEssentials"
+    ]
+  },
+  "mixins": [
+    "tales-essentials.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric": "*",
+    "minecraft": "1.19.2"
+  }
+}
