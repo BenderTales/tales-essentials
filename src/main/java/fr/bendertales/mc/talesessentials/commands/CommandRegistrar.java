@@ -3,6 +3,7 @@ package fr.bendertales.mc.talesessentials.commands;
 import java.util.stream.Stream;
 
 import fr.bendertales.mc.talesessentials.commands.nodes.CmdFeed;
+import fr.bendertales.mc.talesessentials.commands.nodes.CmdFly;
 import fr.bendertales.mc.talesessentials.commands.nodes.CmdHeal;
 import fr.bendertales.mc.talesessentials.commands.nodes.CmdTop;
 import fr.bendertales.mc.talesservercommon.commands.TalesCommandNode;
@@ -23,7 +24,8 @@ public class CommandRegistrar {
 		return Stream.of(
 			new CmdHeal(),
 			new CmdFeed(),
-			new CmdTop()
+			new CmdTop(),
+			new CmdFly()
 		);
 	}
 }
