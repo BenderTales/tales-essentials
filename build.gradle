@@ -37,9 +37,13 @@ processResources {
     inputs.property "version", project.version
     filteringCharset "UTF-8"
 
+    def props = [
+        "version": project.version,
+        "tales_server_common_version": project.tales_server_common_version
+    ]
+
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
-        expand "tales_server_common_version": project.tales_server_common_version
+        expand props
     }
 }
 
