@@ -4,6 +4,7 @@ import java.util.stream.Stream;
 
 import fr.bendertales.mc.talesessentials.commands.nodes.CmdFeed;
 import fr.bendertales.mc.talesessentials.commands.nodes.CmdHeal;
+import fr.bendertales.mc.talesessentials.commands.nodes.CmdTop;
 import fr.bendertales.mc.talesservercommon.commands.TalesCommandNode;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
@@ -21,7 +22,8 @@ public class CommandRegistrar {
 	private static Stream<TalesCommandNode> buildCommands() {
 		return Stream.of(
 			new CmdHeal(),
-			new CmdFeed()
+			new CmdFeed(),
+			new CmdTop()
 		);
 	}
 }
