@@ -4,6 +4,7 @@
   "package": "fr.bendertales.mc.talesessentials.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "PlayerManagerMixin"
   ],
   "client": [
   ],
