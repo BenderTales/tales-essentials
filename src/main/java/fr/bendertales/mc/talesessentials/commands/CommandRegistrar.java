@@ -30,13 +30,6 @@ public class CommandRegistrar {
 			new CmdClearInventory(),
 			new CmdTop(),
 			new CmdFly()
-
-			/*
-				Todo:
-				Invsee ?
-				Enderchest ?
-				MOTD ?
-			 */
 		);
 	}
 }
