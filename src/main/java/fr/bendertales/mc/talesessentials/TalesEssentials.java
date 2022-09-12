@@ -9,6 +9,7 @@ public class TalesEssentials implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
+		EssentialsManager.INSTANCE.load();
 		CommandRegistrar.registerCommands();
 
 	}
