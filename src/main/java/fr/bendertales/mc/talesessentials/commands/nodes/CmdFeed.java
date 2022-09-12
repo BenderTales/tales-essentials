@@ -28,11 +28,12 @@ public class CmdFeed implements TalesCommand, TalesCommandNode {
 	@Override
 	public LiteralArgumentBuilder<ServerCommandSource> asBrigadierNode() {
 		return literal("feed")
-		       .requires(getRequirements().asPredicate())
-		       .executes(this::feedSelf)
-		            .then(argument("targets", EntityArgumentType.players())
-                    .executes(this::feedOthers)
-		            )
+		        .requires(getRequirements().asPredicate())
+		        .executes(this::feedSelf)
+                .then(
+					argument("targets", EntityArgumentType.players())
+                        .executes(this::feedOthers)
+	            )
 				;
 	}
 

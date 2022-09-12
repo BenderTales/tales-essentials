@@ -10,64 +10,60 @@ import fr.bendertales.mc.talesservercommon.commands.TalesCommand;
 import fr.bendertales.mc.talesservercommon.commands.TalesCommandNode;
 import net.minecraft.command.EntitySelector;
 import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
 
-public class CmdHeal implements TalesCommandNode, TalesCommand {
+public class CmdClearInventory implements TalesCommandNode, TalesCommand {
 
-	private final List<String> permissions = List.of("essentials.commands.*", "essentials.commands.heal");
+	private final List<String> permissions = List.of("essentials.commands.*", "essentials.commands.clearinventory.self");
+	private final List<String> permissionsOther = List.of("essentials.commands.*", "essentials.commands.clearinventory.other");
 	private final CommandNodeRequirements requirements = CommandNodeRequirements.of(OP_MEDIOR, permissions);
+	private final CommandNodeRequirements requirementsOther = CommandNodeRequirements.of(OP_MEDIOR, permissionsOther);
 
 	@Override
 	public LiteralArgumentBuilder<ServerCommandSource> asBrigadierNode() {
-		return literal("heal")
-                .requires(this.getRequirements().asPredicate())
-	            .executes(this::healSelf)
-		        .then(
-					argument("target", EntityArgumentType.players())
-	                    .executes(this::healOthers)
-		        )
-				;
+		return literal("clear-inventory")
+			.requires(requirements.asPredicate())
+	        .executes(this::clearSelf)
+	        .then(
+				argument("targets", EntityArgumentType.players())
+					.requires(requirementsOther.asPredicate())
+					.executes(this::clearOther)
+	        );
 	}
 
-	private int healOthers(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+	private int clearOther(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
 		var source = context.getSource();
-		var entitySelector = context.getArgument("target", EntitySelector.class);
-		var players = entitySelector.getPlayers(source);
+		var targetsSelector = context.getArgument("targets", EntitySelector.class);
+		var players = targetsSelector.getPlayers(source);
+
 		for (ServerPlayerEntity player : players) {
-			heal(player);
+			clear(player);
 		}
-		source.sendMessage(Text.literal("Healed targets"));
-		return 0;
-	}
 
-	private int healSelf(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-		var source = context.getSource();
-		var player = source.getPlayerOrThrow();
-		heal(player);
-		player.sendMessage(Text.literal("Healed"), true);
 		return 1;
 	}
 
-	private static void heal(ServerPlayerEntity player) {
-		player.setHealth(100f);
-		var effectTypes = player.getStatusEffects().stream()
-		                        .map(StatusEffectInstance::getEffectType)
-		                        .toList();
-		effectTypes.forEach(player::removeStatusEffect);
+	private int clearSelf(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+		var source = context.getSource();
+		var player = source.getPlayerOrThrow();
+
+		clear(player);
+
+		return 1;
+	}
+
+	private void clear(ServerPlayerEntity player) {
+		var inventory = player.getInventory();
+		inventory.clear();
 	}
 
 	@Override
 	public CommandNodeRequirements getRequirements() {
 		return requirements;
 	}
-
-
-
 }

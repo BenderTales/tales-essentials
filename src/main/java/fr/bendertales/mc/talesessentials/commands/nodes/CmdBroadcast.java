@@ -33,8 +33,8 @@ public class CmdBroadcast implements TalesCommandNode, TalesCommand {
 		return literal("broadcast")
 		       .requires(requirements.asPredicate())
 		       .then(
-			        argument("message", StringArgumentType.greedyString())
-			        .executes(this::broadcast)
+		            argument("message", StringArgumentType.greedyString())
+				        .executes(this::broadcast)
 		       );
 	}
 

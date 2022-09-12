@@ -26,13 +26,12 @@ public class CommandRegistrar {
 			new CmdHeal(),
 			new CmdFeed(),
 			new CmdBroadcast(manager),
+			new CmdClearInventory(),
 			new CmdTop(),
 			new CmdFly()
 
 			/*
 				Todo:
-				Broadcast
-				ClearInventory
 				Invsee ?
 				Enderchest ?
 				Exp ?

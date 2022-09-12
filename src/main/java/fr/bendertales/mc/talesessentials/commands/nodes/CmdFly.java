@@ -29,9 +29,11 @@ public class CmdFly implements TalesCommandNode, TalesCommand {
 		return literal("fly")
                 .requires(getRequirements().asPredicate())
 				.executes(this::flySelf)
-		        .then(argument("targets", EntityArgumentType.players())
-	                .requires(requirementsOther.asPredicate())
-	                .executes(this::flyOther));
+		        .then(
+					argument("targets", EntityArgumentType.players())
+	                    .requires(requirementsOther.asPredicate())
+	                    .executes(this::flyOther)
+		        );
 	}
 
 	private int flyOther(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
