@@ -39,7 +39,7 @@ public class CmdFeed implements TalesCommand, TalesCommandNode {
 
 	private int feedOthers(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
 		var source = context.getSource();
-		var entitySelector = context.getArgument("target", EntitySelector.class);
+		var entitySelector = context.getArgument("targets", EntitySelector.class);
 		var players = entitySelector.getPlayers(source);
 		for (ServerPlayerEntity player : players) {
 			feed(player);
