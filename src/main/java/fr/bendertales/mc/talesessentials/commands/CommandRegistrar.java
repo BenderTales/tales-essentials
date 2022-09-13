@@ -25,7 +25,6 @@ public class CommandRegistrar {
 			new CmdPing(),
 			new CmdHeal(),
 			new CmdFeed(),
-			new CmdExp(),
 			new CmdBroadcast(manager),
 			new CmdClearInventory(),
 			new CmdTop(),
