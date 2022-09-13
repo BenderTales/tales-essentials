@@ -37,7 +37,7 @@ public class CmdTop implements TalesCommandNode, TalesCommand {
 		boolean isBelowCeiling = false;
 		int y = maxY;
 		boolean found = false;
-		while(y > minY) {
+		for( ; y > minY; y -= 1) {
 			var currentBlockPos = playerBlockPos.withY(y);
 			var blockState = world.getBlockState(currentBlockPos);
 			if (blockState.isAir()) {
@@ -49,11 +49,10 @@ public class CmdTop implements TalesCommandNode, TalesCommand {
 				found = true;
 				break;
 			}
-			y -= 1;
 		}
 
 		if (found) {
-			player.teleport(playerBlockPos.getX(), y , playerBlockPos.getZ());
+			player.teleport(playerBlockPos.getX(), y+1 , playerBlockPos.getZ());
 			return 1;
 		}
 
