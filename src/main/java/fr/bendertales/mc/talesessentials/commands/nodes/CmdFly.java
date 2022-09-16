@@ -56,6 +56,7 @@ public class CmdFly implements TalesCommandNode, TalesCommand {
 	}
 
 	private static void toggleFlight(ServerPlayerEntity player) {
+		// Does not work ? Will need to find why someday
 		if (!player.getAbilities().allowFlying) {
 			player.getAbilities().allowFlying = true;
 		}
