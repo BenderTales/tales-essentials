@@ -26,7 +26,8 @@ public class CommandRegistrar {
 			new CmdHeal(),
 			new CmdFeed(),
 			new CmdBroadcast(manager),
-			new CmdFly()
+			new CmdFly(),
+			new CmdTPS()
 		);
 	}
 }
