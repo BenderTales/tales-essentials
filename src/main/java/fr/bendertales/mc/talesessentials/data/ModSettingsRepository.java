@@ -40,4 +40,9 @@ public class ModSettingsRepository extends ConfigRepository<ModSettings, ModSett
 	protected ModSettings convert(ModSettings modSettings) {
 		return modSettings;
 	}
+
+	@Override
+	protected ModSettings unconvert(ModSettings modSettings) {
+		return modSettings;
+	}
 }

@@ -8,7 +8,6 @@ import fr.bendertales.mc.talesservercommon.commands.CommandNodeRequirements;
 import fr.bendertales.mc.talesservercommon.commands.TalesCommand;
 import fr.bendertales.mc.talesservercommon.commands.TalesCommandNode;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import static net.minecraft.server.command.CommandManager.literal;
@@ -40,8 +39,8 @@ public class CmdTPS implements TalesCommandNode, TalesCommand {
 		long[] lastTickTimes = server.lastTickLengths;
 		long tickCount = 0;
 		long totalTime = 0;
-		for (int i = 0 ; i < lastTickTimes.length ; i++) {
-			long tickTime = lastTickTimes[i]; // in nanos
+
+		for (long tickTime : lastTickTimes) {
 			if (tickTime > 0) {
 				tickCount += 1;
 				if (tickTime < MIN_TICK_SIZE_NANOS) {
@@ -50,7 +49,6 @@ public class CmdTPS implements TalesCommandNode, TalesCommand {
 				else {
 					totalTime += tickTime / 1000;
 				}
-
 			}
 		}
 

@@ -18,7 +18,7 @@ public enum EssentialsManager {
 	}
 
 	public void reload() {
-		modSettings = settingsRepository.getConfig();
+		modSettings = settingsRepository.load();
 	}
 
 	public String getBroadcastFormat() {
