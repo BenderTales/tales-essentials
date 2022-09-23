@@ -16,8 +16,9 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class CmdTPS implements TalesCommandNode, TalesCommand {
 
 	private static final int MAX_TICK_PER_SECOND = 20;
+	private static final int NANOS_FACTOR = 1_000_000;
 	private static final int MIN_TICK_SIZE = 1000 / MAX_TICK_PER_SECOND;
-	private static final int MIN_TICK_SIZE_NANOS = MIN_TICK_SIZE * 1000;
+	private static final int MIN_TICK_SIZE_NANOS = MIN_TICK_SIZE * NANOS_FACTOR;
 
 	private final List<String>            permissions  = List.of("essentials.commands.*", "essentials.commands.tps");
 	private final CommandNodeRequirements requirements = CommandNodeRequirements.of(OP_MEDIOR, permissions);
@@ -47,7 +48,7 @@ public class CmdTPS implements TalesCommandNode, TalesCommand {
 					totalTime += MIN_TICK_SIZE; // if the tick is faster, it will probably wait ?
 				}
 				else {
-					totalTime += tickTime / 1000;
+					totalTime += tickTime / NANOS_FACTOR;
 				}
 			}
 		}
